@@ -8,7 +8,7 @@
     --color-secondary: #fff;
     --color-banner: #2522BA;
     --color-text-btn: #0d6efd;
-    --colog-bg-btn: #ffdc60;
+    --color-bg-btn: #ffdc60;
     --color-subtitle: #c75c6f;
     --color-title: #292930;
     --color-bg-services: #f8f8f8;
@@ -54,7 +54,8 @@ No es necesario flotar los elementos (ni con float, flex, grid, grid-areas */
 }
 .menu__navbar{
     /* Flex + aling/justify */
-
+    display: grid;
+    grid-template-columns: 1fr 0fr 1fr;
 }
 
 .navbar__logo{
@@ -62,19 +63,30 @@ No es necesario flotar los elementos (ni con float, flex, grid, grid-areas */
 }
 .nav__list{
     /* Flex + aling/justify */
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
 }
 .nav__item{
     /* position */
-
+    position: relative;
     margin: 0 2.4rem;
 }
 .nav__title{
-    /* position */
+    /* ubicamos el título y el icono */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
     
+    /* position */
+    position: relative;
     line-height: 6rem;
     font-weight: 500;
     color: var(--color-text-body);
+    /* efecto */
     transition: all 300ms ease-in-out;
+}
+.nav__title i{
+    margin-left: 5px;
 }
 .nav__icon{
     font-size: 1rem;
@@ -85,13 +97,33 @@ No es necesario flotar los elementos (ni con float, flex, grid, grid-areas */
 
 /* efecto */
 .nav__title:hover{
-
+    color: var(--color-primary);
+    transform: scale(1.1);
 }
 
+/* pseudoelemento para subrayado en el menu */
+.nav__title::before{
+    content: "";
+    position: absolute;
+    height: 0.2rem;
+    background-color: var(--color-primary);
+    bottom: 1.2rem;
+    left: 0;
+    width: 0%;
+    opacity: 0;
+    transition: all 350ms linear;
+}
+.nav__title:hover::before{
+    width: 100%;
+    opacity: 1;
+}
 
 .nav__submenu{
     /* position */
-    
+    display:block;
+    position: absolute;
+    top: 100%;
+    left: 2rem;
     
     min-width: 19rem;
     padding: 1.5rem 1rem;
@@ -99,36 +131,79 @@ No es necesario flotar los elementos (ni con float, flex, grid, grid-areas */
     box-shadow: 0px 13px 48px 0 rgba(0,0,0,15%);
     
     /* visibility, opacity y efecto */
-
+    opacity: 0;
+    /* visibility: hidden; */
+    transition: all 300ms ease-in-out;
 }
 
 .submenu__item{
-    /* efecto */ 
+    /* efecto */
+    opacity: 0;
+    transform: translateX(3rem);
+    transition: all 500ms ease-in-out;
+}
+/* efecto */
+.submenu__item:nth-child(1){
+    transition-delay: 100ms;
+}
+.submenu__item:nth-child(2){
+    transition-delay: 200ms;
+}
+.submenu__item:nth-child(3){
+    transition-delay: 300ms;
+}
+.submenu__item:nth-child(4){
+    transition-delay: 400ms;
 }
 
-/* efecto */
-
-
 .submenu__title{
-    /* position */ 
+    /* position */
+    position:relative;
+
     font-size: 1.4rem;
     text-transform: capitalize;
     text-decoration: none;
     font-weight: 500;
     color: var(--color-text-body);
     padding: 0.7rem 1.5rem;
+    
     /* efecto */
-
+    transition: all 300ms linear;
 }
 
 /* efectos varios */
+.nav__item:hover>.nav__submenu{
+/* .nav__title:hover>.nav__submenu{ */
+    opacity: 1;
+    /* visibility: visible; */
+    z-index: 10;
+    left: 0;
+}
 
-
-
+.nav__item:hover>.nav__submenu>.submenu__item{
+    opacity: 1;
+    transform: translateX(0);
+}
+.submenu__title:hover{
+    color: var(--color-primary);
+    transform: scale(1.1);
+}
+.submenu__item::before{
+    content: "";
+    height: 0.2rem;
+    width: 0;
+    background-color: var(--color-primary);
+    position: absolute;
+    bottom: 0.5rem;
+    opacity: 0;
+    left: 35%;
+    transition: all 300ms linear;
+}
 
 /* Estilos para el Banner */
 .layout__banner{
     /* position */
+    position: relative;
 
     min-height: 60rem;
     /*border: 2px solid red; */
@@ -144,11 +219,12 @@ No es necesario flotar los elementos (ni con float, flex, grid, grid-areas */
 }
 .banner__content{
     /* position */
-
+    position: relative;
+    display: inline-block;
 
     width: 50%;
     padding: 0 1.5rem;
-    z-index: 3;
+    z-index: 6;
 }
 .banner__title{
     font-size: 8rem;
@@ -167,50 +243,173 @@ No es necesario flotar los elementos (ni con float, flex, grid, grid-areas */
     text-align: center;
     box-shadow: 0px 45px 70px -25px var(--color-primary);
     /* efecto */
+    transition: all 300ms ease-in-out;
 }
 /* efecto */
-
+.banner__btn:hover{
+    background-color: var(--colog-bg-btn);
+}
 
 .shapes__item{
     /* position y z-index */
-    
+    position: absolute;
+    z-index: 5; 
     pointer-events: none;
 }
 .shapes__item--shape1{
     /* position y animación */
+    top: 0; /*coloca arriba*/
+    right: 0; /*coloca a la derecha*/
+    animation-name: muestraDesdeDerecha;
+    animation-duration: 2s;
+}
+
+@keyframes muestraDesdeDerecha{
+    from{
+        transform: translateX(100%); /*mueve el elemento un 100%respecto a si mismo*/
+    }
+    to{
+        transform: translateX(0px);
+    }
 }
 
 .shapes__item--shape2{
     /* position y animación */
+    bottom: 0; /*colocar abajo*/
+    left: 0; /*colocar a la izquierda*/
+    animation-name: muestraDesdeIzquierda;
+    animation-duration: 2s;
+}
+
+@keyframes muestraDesdeIzquierda{
+    from{
+        transform: translateX(-100%); /*mueve el elemento un 100%respecto a si mismo*/
+    }
+    to{
+        transform: translateX(0px);
+    }
 }
 
 .shapes__item--shape3{
     /* position y animación */
+    top: 50%;
+    right: 50%;
+    animation: mueveShape3 20s infinite;
+}
+
+@keyframes mueveShape3{
+    0%{
+        transform: translateX(0%) translateY(0%);
+    }
+    33%{
+        transform: translateX(50px) translateY(-200px);
+    }
+    66%{
+        transform: translateX(800px) translateY(0%);
+    }
+    100%{
+        transform: translateX(0%) translateY(0%);
+    }
 }
 
 .shapes__item--shape4{
     /* position y animación */
+    bottom: 10%;
+    left: 40%;
+    animation: mueveShape4 20s infinite;
+
+}
+@keyframes mueveShape4{
+    0%{
+        transform: translateX(0%) translateY(0%);
+    }
+    29%{
+        transform: translateX(-400px) translateY(-100px);
+    }
+    59%{
+        transform: translateX(0px) translateY(-100px);
+    }
+    100%{
+        transform: translateX(0%) translateY(0%);
+    }
 }
 .shapes__item--shape4 .shapes__img{
     opacity: 0.5;
     width: 7.5rem;
+    
 }
+
+
 
 
 .shapes__item--shape5{
     /* position y animación */
+    top: 10%;
+    left: 10%;
+    animation: mueveShape5 20s infinite;
+
 }
+@keyframes mueveShape5{
+    0%{
+        transform: translateX(0%) translateY(0%);
+    }
+    26%{
+        transform: translateX(-200px) translateY(300px);
+    }
+    70%{
+        transform: translateX(300px) translateY(320px);
+        opacity: 50%;
+    }
+    100%{
+        transform: translateX(0px) translateY(0%);
+    }
+}
+
 
 .shapes__item--shape6{
     /* position y animación */
+    bottom: 10%;
+    left: 70%;
+    animation: mueveShape6 20s infinite;
+
+}
+@keyframes mueveShape6{
+    0%{
+        transform: translateX(0%) translateY(0%);
+    }
+    4%{
+        transform: translateX(-300px) translateY(50px);
+    }
+    50%{
+        transform: translateX(300px) translateY(-600px);
+    }
+    100%{
+        transform: translateX(0%) translateY(0%);
+    }
 }
 .shapes__item--shape7{
     /* position y animación */
+    top: 0;
+    right: 5.5%;
+    z-index: 4; /*profundidad*/
+    animation-name: muestraDesdeArriba;
+    animation-duration: 2s;
+}
+
+@keyframes muestraDesdeArriba{
+    from{
+        transform: translateY(-70%); /*mueve el elemento un 100%respecto a si mismo*/
+    }
+    to{
+        transform: translateY(0px);
+    }
 }
 
 /* Estilos sección Servicios */
 .layout__services{
     /* position y z-index */
+    position: relative;
+    z-index: 1;
 
     margin: 14rem 10rem;
     margin-bottom: 4rem;
@@ -246,14 +445,18 @@ No es necesario flotar los elementos (ni con float, flex, grid, grid-areas */
     color: var(--color-title);
 }
 .services__list{
-    /* flex */
+    /* Grid */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /*coloco el contendio en tres columnas*/
 
     gap: 3rem; /* separación entre los elementos */
 }
 .services__service{
-    /* flex */
+    /* grid */
+    display: grid;
+    grid-template-columns: 2fr 5fr; /*dentro de cada articulo divido en columnas*/
 
-    height: 100%;
+    height: 55%;
     padding: 5rem 4rem;
     margin-bottom: 4rem;
     border-radius: 3rem;
@@ -262,14 +465,22 @@ No es necesario flotar los elementos (ni con float, flex, grid, grid-areas */
     border: 1px solid;
     border-image-source: linear-gradient(90deg, var(--color-bg-services), rgba(255,255,255,0));
     /* efecto */
-
+    transition: all 300ms linear;
 }
-
+.services__service:hover{
+    background-color: var(--color-borders);
+}
 .service__container-img{
     margin-right: 2.5rem;
     max-width: 8.5rem;
     /* Relacionado con flex grow y flex basis */
+    
 }
+
+.service__img:hover {
+    transform:scale(1.4);
+}
+
 .service__content{
     /* Relacionado con flex grow y flex basis */
 }
@@ -280,6 +491,7 @@ No es necesario flotar los elementos (ni con float, flex, grid, grid-areas */
     line-height: 1.4;
     margin-bottom: 3rem;
     /* efecto */
+    transition: all 300ms linear;
 }
 .service__description{
     overflow: hidden;
@@ -288,52 +500,100 @@ No es necesario flotar los elementos (ni con float, flex, grid, grid-areas */
 }
 .service__more{
     /* position */
-
+    position: relative;
     font-weight: 500;
     font-size: 1.7rem;
     padding-left: 5rem;
     /* efecto */
+    transition: all 500ms linear;
+}
+.service__more:hover::before{
+    background-color: var(--color-primary);
 }
 
-/* pseudoelemento before */
+/* pseudoelemento before. Es la linea que se agrega al "leer mas" */
+.service__more::before{
+    content: "";
+    width: 20%;
+    height: 0.2rem;
+    background-color: var(--color-text-body);
+    position: absolute;
+    left: 0;
+    bottom: 50%;
+    transition: all 500ms linear;
+
+}
+
 
 .service__more:hover,
 .service__title:hover{
     color: var(--color-primary);
 }
-.service__more:hover::before{
-    color: var(--color-primary);
-}
 
 /* para generar el escalonado de las tarjetas de servicios */
 .services__service--bottom{
+    margin-top: 200px;
     
 }
 .services__service--middle{
+    margin-top: 100px;
     
 }
 .services__service--top{
-    
+    top: 0;
 }
 
 /* coloco a las formas detrás de los servicios */
 .service-shapes__item{
     /* position y z-index */
-
+    position: relative;
+    z-index: -1;
     pointer-events: none;
 }
 .service-shapes--shape1{
     /* position */
+    top: 0;
+    right: 5.5%;
+    z-index: 4; /*profundidad*/
 }
+/*-----------------------------------------------------------------*/
+.shapes__item--shape7{
+    /* position y animación */
+    top: 0;
+    right: 5.5%;
+    z-index: 4; /*profundidad*/
+    animation-name: muestraDesdeArriba;
+    animation-duration: 2s;
+}
+
+@keyframes muestraDesdeArriba{
+    from{
+        transform: translateY(-70%); /*mueve el elemento un 100%respecto a si mismo*/
+    }
+    to{
+        transform: translateY(0px);
+    }
+}
+/*-----------------------------------------------------------------*/
 .service-shapes--shape2{
     /* position */
     opacity: 0.6;
 }
 .service-shapes--shape3{
     /* position y animación */
+    top: 0%;
+    animation-name: rotar;
+    animation-duration: 10s;
 
 }
-
+@keyframes rotar{
+    from{
+        transform: translateY(-70%); /*mueve el elemento un 100%respecto a si mismo*/
+    }
+    to{
+        transform: rotate(100%);
+    }
+}
 /* Estilos para la sección de Proyectos */
 .layout__projects{
     /* position y z-index */
