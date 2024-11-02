@@ -70,16 +70,17 @@ body{
     background-color: var(--color-bg);
     font-family: "BebasNeue";
     color: var(--color-text-white);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 20px;
 }
 
 .header__logo{
-    float: left;
-    width: 200px;
     height: 50px;
     background-color: var(--color-primary);
     text-align: center;
     margin-top: 8px;
-    margin-left: 20px;
     letter-spacing: 1px;
     cursor: pointer;
     overflow: hidden;
