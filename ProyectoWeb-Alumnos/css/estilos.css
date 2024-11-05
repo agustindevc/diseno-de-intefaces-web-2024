@@ -268,19 +268,27 @@ color:var(--color-text-white);
     }
 }
 
+.content__cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    
+}
 .cards__card:hover{
     background-color: black;
-    box-shadow: 10px 10px 10px 10px grey
+    box-shadow: 10px 10px 10px 10px grey;
+    border-radius: 10%;
 }
 /* Tarjetas */
 .cards__card{
-    float: left;
+    
     width: 200px;
     height: 260px;
     border: 1px solid var(--color-backgroung);
     box-shadow: 1px 1px 4px var(--color-box-shadow);
     overflow: hidden;
-    margin: 22px;
+    margin-left: 50px;
+    margin-bottom: 40px;
     margin-top: 40px;
     cursor: pointer;
     /* transicion */
@@ -324,9 +332,20 @@ color:var(--color-text-white);
     font-weight: bold;
     text-align: center;
     color: var(--color-text-title);
-    transition: all 500ms;
 }
 /*efecto hover en la carta - modificamos card_category */
+.card__category:hover {
+    color: white;
+    animation: desdeIzquierda 500ms linear;
+   
+}
+@keyframes desdeIzquierda{
+    from{
+        transform: translateX(-100%);
+    } to {
+        transform: translateX(0%);
+}
+}
 
 .card__description{
     font-family: "TrebuchetMS";
@@ -339,6 +358,15 @@ color:var(--color-text-white);
 /* efecto de hover en la carta. tocamos card__description */
 .cards__card:hover .card__description{
     color: white;
+    animation: desdeDerecha 500ms linear;
+    -webkit-animation: desdeDerecha 500ms linear;
+}
+@keyframes desdeDerecha{
+    from{
+        transform: translateX(100%);
+} to {
+        transform: translateX(0%);
+}
 }
 
 .clearfix{
