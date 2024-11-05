@@ -75,29 +75,31 @@ body{
     grid-template-columns: 2fr 1fr;
     padding: 0 20px;
 }
-.sello{
+.card__sello{
     width: 55%;
     margin: 10%;
 }
 
-.caja{
+.card__caja{
     width: 70%;
     margin: 5%;
 }
 
-.servicioimg{
+.card__servicioimg{
     width: 60%;
     margin: 10%;
 }
 
 .header__wrap{
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1.5fr 1fr;
     padding: 10 20px;
     margin-right: 0px;
 }
 
 .header__logo{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     width: 180px;
     height: 50px;
     background-color: var(--color-primary);
@@ -110,17 +112,18 @@ body{
     transition: all 500ms linear;
 }
 
+
 .header__logo h3{
     display: block;
     float: right;
     font-size: 40px;
-    margin-right: 65px;
+    margin-right: 40px;
     /* transición */
     transition: all 500ms linear;
 }
 
 /* efecto con keyframes - hover en el Logo */
-.header__logo:hover h3{ /*Heder sobre el logo atacando al h3*/
+.header__logo:hover h3{ /*Header sobre el logo atacando al h3*/
     animation: desdeDerecha 700ms;
 }
 
@@ -132,9 +135,12 @@ body{
         transform: translateX(0%);
     }
 }
-/* efecto hover en Logo */
-.header__logo:hover h3{
-    
+
+/*efecto hover en el logo*/
+.header__logo:hover{
+    background-color: var(--color-backgroung);
+    color: black;
+    border-radius: 2px;
 }
 
 .header__logo .logo__gear{
@@ -145,14 +151,34 @@ body{
     margin-left: 26px;
 
     /* A la hora de crear animación */
-
+    animation: giraRueda 4s infinite linear;
 }
 
 /* animación logo rueda */
-
+@keyframes giraRueda{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
 
 /* efecto de desaparece y vuelve keyframes */
-
+.header__logo:hover .logo__gear{
+    animation: desdeAbajo 1s linear;
+}
+@keyframes desdeAbajo {
+    0%{
+        transform: translateY(0%);
+    }
+    50%{
+        transform: translateY(250%) rotate(360deg);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
 
 .header__menu{
     display: grid;
@@ -167,13 +193,18 @@ body{
     letter-spacing: 1px;
     line-height: 70px;
 }
-.menu__list li a{
+.list__item a{
     display:block;
     color: var(--color-text-white);
     text-decoration: none;
     /* transición */
+    transition: all 500ms;
 }
 /* hover */
+.list__item a:hover{
+    color: var(--color-primary);
+    transform: scale(1.2);
+}
 
 /* Maquetando el Banner */
 .content__banner{
@@ -181,14 +212,23 @@ body{
     height: 100px;
     border: 10px solid var(--color-text-white);
     box-shadow: 0px 0px 2px var(--color-gray);
-    background: url("../img/bakbaner.png");
+    background: url("../img/backbanner.png");
     background-position: -200px -200px;
     margin: 20px auto;
     overflow: hidden;
     /* animación */
+    animation: backBanner 10s linear infinite;
 }
 
 /* keyframes */
+@keyframes backBanner{
+    from{
+        background-position: 0px 0px;
+    }
+    to { 
+        background-color: -200px -200px;
+    }
+}
 
 .content__banner h1{
     display: block;
@@ -200,10 +240,38 @@ body{
     text-shadow: 2px 2px 1px var(--color-bg);
     margin: 10px auto;
     /* animación */
-}
+    animation: mueveTexto 5s linear 1;
+}   
 
 /* keyframes */
+@keyframes mueveTexto{
+    0%{
+        transform: translateX(-600%) scale(3,3);
+        opacity: 1;
+    }
+    50%{
+        transform: translateX(600%) scale(3,3);
+        opacity: 1;
+    }
+    75%{
+        transform: translateX(-600%) scale(3,3);
+        text-shadow: none;
+        /* color:transparent; */
+        opacity: 0.5;
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0%) scale(1,1);
+        text-shadow: 2px 2px 1px var(--color-bg);
+color:var(--color-text-white);
+        opacity: 1;
+    }
+}
 
+.cards__card:hover{
+    background-color: black;
+    box-shadow: 10px 10px 10px 10px grey
+}
 /* Tarjetas */
 .cards__card{
     float: left;
@@ -216,7 +284,7 @@ body{
     margin-top: 40px;
     cursor: pointer;
     /* transicion */
-
+    transition: all 500ms;
 }
 /*efecto hover en las cartas */
 
@@ -235,9 +303,18 @@ body{
     margin: 0px auto;
 }
 /*efecto hover en la carta modificamos card__icon */
-
+.card__icon:hover .card__img{
+    animation: muestroIcono 500ms linear;
+}
 /* keyframes */
-
+@keyframes muestroIcono{
+    from{
+        transform: translateY(-100%);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
 .card__category{
     margin-top: 15%;
     width: 100%;
@@ -257,9 +334,12 @@ body{
     color: var(--color-text-title);
     font-size: 14px;
     /* transición */
+    animation: all 500ms;;
 }
 /* efecto de hover en la carta. tocamos card__description */
-
+.cards__card:hover .card__description{
+    color: white;
+}
 
 .clearfix{
     float: none;
@@ -312,8 +392,12 @@ body{
     background-color: transparent;
     color: var(--color-backgroung);
     /* transición para el focus */
+    transition: all 500ms;
 }
 /* obtengo foco en input[type="text"] */
+.lateral__search input[type="text"]:focus{ /*RESALTAR LO QUE ESTOY ESCRIBIENDO-----------------------------------------------------*/
+    color: var(--color-primary)
+}
 
 
 .lateral__search input[type="button"],
@@ -443,10 +527,14 @@ body{
     transform: translateX(-80%); /*lo desplazo para que cuando se lance el hover se vea el movimiento de la traslación*/
     opacity: 0; /*lo oculto*/
     /* transición el cambio */
+    transition: all 1s linear;
 
 }
 /* efecto hover sobre el div de lateral__social */
-
+.lateral__social div:hover .social_overlay{ /*HAGO UN HOVER A TODOS LOS DIV HIJOS DE LATERAL_SOCIAL--------------------REVISAR, NO FUNCIONA*/
+    opacity: 1;
+    transform: translateX(0%);
+}
 
 /* Artículos */
 .content__articles{
@@ -560,6 +648,7 @@ body{
     /* transición */
 
 }
+
 .footer__title{
     display: block;
     background: url("../img/pxgray.png"), var(--color-text-white);
@@ -587,9 +676,14 @@ body{
     display: block;
     height: 40px;
     /* transición */
+    transition: all 500ms;
 }
 /* efecto de hover sobre cada li */
-
+.footer__list li a:hover {
+    padding-left: 50px;
+    color:var(--color-text-white);
+    width: 100%;
+}
 
 .content__footer iframe{
     width: 100%;
