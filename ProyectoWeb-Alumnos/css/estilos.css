@@ -311,7 +311,7 @@ color:var(--color-text-white);
     margin: 0px auto;
 }
 /*efecto hover en la carta modificamos card__icon */
-.card__icon:hover .card__img{
+.cards__card:hover .card__icon .card__img{
     animation: muestroIcono 500ms linear;
 }
 /* keyframes */
@@ -334,7 +334,7 @@ color:var(--color-text-white);
     color: var(--color-text-title);
 }
 /*efecto hover en la carta - modificamos card_category */
-.card__category:hover {
+.cards__card:hover .card__category {
     color: white;
     animation: desdeIzquierda 500ms linear;
    
