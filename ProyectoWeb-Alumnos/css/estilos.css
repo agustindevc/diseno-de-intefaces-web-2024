@@ -50,7 +50,7 @@ html{
     overflow-x: hidden;
 }
 body{
-    background: url("../img/pattern.png");
+    background: url("../img/5590457.jpg");
 }
 /* wrap queremos que los elementos "hijos" dispongan de estos estilos */
 .header__wrap, .content__wrap, .footer__wrap{
@@ -65,15 +65,14 @@ body{
 
 /* Cabecera */
 .header{
+    display: grid;
     width: 100%;
     height: 70px;
     background-color: var(--color-bg);
     font-family: "BebasNeue";
     color: var(--color-text-white);
-
-    display: grid;
-    grid-template-columns: 2fr 1fr;
     padding: 0 20px;
+    align-items: center;
 }
 .card__sello{
     width: 55%;
@@ -92,9 +91,8 @@ body{
 
 .header__wrap{
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    padding: 10 20px;
-    margin-right: 0px;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
 }
 
 .header__logo{
@@ -182,19 +180,24 @@ body{
 
 .header__menu{
     display: grid;
+
+    justify-content: right;
     margin-right: 0px;
     height: 70px;
     background: transparent;
 }
-.menu__list li{
+.menu__list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    justify-items: center;
     font-size: 24px;
-    display: inline-block; /* puedo flotar con el float o bien mediante inline-block. Funcionaría igual */
-    margin: 0px 20px 0px 20px;
+    margin: 0px 0px 0px 0px;
     letter-spacing: 1px;
     line-height: 70px;
 }
 .list__item a{
-    display:block;
+    display: grid;
     color: var(--color-text-white);
     text-decoration: none;
     /* transición */
@@ -586,6 +589,11 @@ color:var(--color-text-white);
     margin-bottom: 15px;
 }
 
+.other__articles{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .articles__article{
     width: 98%;
     height: auto;
@@ -654,15 +662,19 @@ color:var(--color-text-white);
 
 /* FOOTER */
 .content__footer{
+    display: grid;
+    grid-template-columns: 1fr;
     width: 100%;
     height: 470px;
     background-color: black;
     color: var(--color-text-white);
     overflow: hidden;
 }
-.footer__wrap > div{
-    float: left;
-    width: 25%;
+.footer__wrap{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 200px;
+    width: 90%;
     height: 370px;
     margin: 40px;
     text-align: center;
@@ -674,7 +686,6 @@ color:var(--color-text-white);
     text-decoration: none;
     color: var(--color-primary);
     /* transición */
-
 }
 
 .footer__title{
