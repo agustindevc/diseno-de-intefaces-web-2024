@@ -178,7 +178,7 @@ body{
 
 .header__menu{
     display: grid;
-align-items: center;
+    align-items: center;
     justify-content: right;
     margin-right: 0px;
     height: 70px;
@@ -212,8 +212,17 @@ align-items: center;
     grid-template-columns: 1fr 1fr;
 }
 
+.content__info{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: space-between;
+    
+}
+
 /* Maquetando el Banner */
 .content__banner{
+    display: grid;
+    justify-content: left;
     grid-template-columns: 1fr;
     width: 95.5%;
     height: 100px;
@@ -240,7 +249,7 @@ align-items: center;
 .content__banner h1{
     display: block;
     align-items: center;
-    width: 850px;
+    width: 85%;
     font-family: "BebasNeue";
     color: var(--color-text-white);
     font-size: 45px;
@@ -280,7 +289,8 @@ color:var(--color-text-white);
 .content__cards{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-
+    justify-content: space-between;
+    margin: 20px auto;
     
 }
 .cards__card:hover{
@@ -296,9 +306,7 @@ color:var(--color-text-white);
     border: 1px solid black;
     box-shadow: 1px 1px 4px black;
     overflow: hidden;
-    margin-left: 50px;
-    margin-bottom: 40px;
-    margin-top: 40px;
+    margin: 30px;
     cursor: pointer;
     /* transicion */
     transition: all 500ms;
