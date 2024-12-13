@@ -209,11 +209,14 @@ body{
 
 .container{
     display: grid;
+    place-items: top center;
     grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
 }
 
 .content__info{
     display: grid;
+    place-items: center;
     grid-template-columns: 1fr;
     justify-content: space-between;
     
@@ -290,7 +293,7 @@ color:var(--color-text-white);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-content: space-between;
-    margin: 20px auto;
+
     
 }
 .cards__card:hover{
@@ -376,6 +379,7 @@ color:var(--color-text-white);
 .cards__card:hover .card__description{
     color: black;
     animation: desdeDerecha 500ms linear;
+    -webkit-animation: desdeDerecha 500ms linear;
 }
 @keyframes desdeDerecha{
     from{
